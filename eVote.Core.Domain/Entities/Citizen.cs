@@ -13,6 +13,6 @@ namespace eVote.Core.Domain.Entities
         public required string LastName { get; set; }
         public required string Email { get; set; }
         public required bool Status { get; set; } = true;
-        public required string PasswordHash { get; set; }
+        public required string IdentificationNumber { get; set; }
     }
 }
