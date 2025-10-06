@@ -10,7 +10,7 @@ namespace eVote.Core.Domain.Entities
         public DateTime CreatedDate { get; set; }
 
         public ICollection<Vote>? Votes { get; set; }
-        public ICollection<ElectivePosition>? ElectionPositions { get; set; }
+        public ICollection<ElectivePosition>? ElectivePositions { get; set; }
 
     }
 }
