@@ -7,10 +7,8 @@ using eVote.Core.Domain.CommonEntity;
 
 namespace eVote.Core.Domain.Entities
 {
-    public class User : BaseEntity<int>
+    public class User : BaseEntityPersonal<int>
     {
-        public required string FirstName { get; set; }
-        public required string LastName { get; set; }
         public required string UserName { get; set; }
         public required string Email { get; set; }
         public required string PasswordHash { get; set; }

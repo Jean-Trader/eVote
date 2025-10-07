@@ -14,6 +14,6 @@ namespace eVote.Core.Domain.Entities
         public required int ReceivingPartyId { get; set; }
         public Party? ReceivingParty { get; set; }
         public required DateTime RequestDate { get; set; }
-        public required string Status { get; set; } // "Pending", "Accepted", "Rejected"
+        public required string Status { get; set; } 
     }
 }

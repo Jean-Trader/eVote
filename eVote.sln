@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36429.23 d17.14
+VisualStudioVersion = 17.14.36429.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVote", "eVote\eVote.csproj", "{BB0FD519-3140-4D04-971E-085E27A1BAC1}"
 EndProject
@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SRC", "SRC", "{02EA681E-C7D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{37ECCFD4-3141-4510-921A-32BBE891AAFD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructure", "Infraestructure", "{6F9DC4A5-EBCD-439C-ABE7-A31379F03A97}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6F9DC4A5-EBCD-439C-ABE7-A31379F03A97}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{DA481250-D90A-4196-8B04-449058DDE523}"
 EndProject
@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVote.Core.Domain", "eVote.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVote.Core.Application", "eVote.Core.Application\eVote.Core.Application.csproj", "{FBF4B0F6-CC6C-465B-8ED4-2C3471767228}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVote.Infraestructure.Persistence", "eVote.Infraestructure.Persistence\eVote.Infraestructure.Persistence.csproj", "{A4A04C2E-1F0B-465B-85EF-A3BF86E0D4D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eVote.Infrastructure.Persistence", "eVote.Infraestructure.Persistence\eVote.Infrastructure.Persistence.csproj", "{A4A04C2E-1F0B-465B-85EF-A3BF86E0D4D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

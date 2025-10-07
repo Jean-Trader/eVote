@@ -9,18 +9,18 @@ namespace eVote.Core.Domain.Entities
 {
     public class Vote
     {
-        public int Id { get; set; }
+        public required int Id { get; set; }
 
-        public int CitizenId { get; set; }
-        public Citizen Citizen { get; set; }
+        public required int CitizenId { get; set; }
+        public Citizen? Citizen { get; set; }
 
-        public int CandidateId { get; set; }
-        public Candidate Candidate { get; set; }
+        public required int CandidateId { get; set; }
+        public Candidate? Candidate { get; set; }
 
-        public int ElectivePositionId { get; set; }
-        public ElectivePosition ElectivePosition { get; set; }
-        public int ElectionId { get; set; }
-        public Election Election { get; set; }
+        public required int ElectivePositionId { get; set; }
+        public ElectivePosition? ElectivePosition { get; set; }
+        public required int ElectionId { get; set; }
+        public Election? Election { get; set; }
 
         public DateTime VoteDate { get; set; }
     }
