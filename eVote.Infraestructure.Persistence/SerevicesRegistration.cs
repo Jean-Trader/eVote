@@ -1,7 +1,11 @@
-﻿using eVote.Infraestructure.Persistence.Context;
+﻿using eVote.Core.Domain.Entities;
+using eVote.Core.Domain.Interfaces;
+using eVote.Infraestructure.Persistence.Context;
+using eVote.Infrastructure.Persistence.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace eVote.Infraestructure.Persistence
 {
@@ -17,7 +21,19 @@ namespace eVote.Infraestructure.Persistence
             m => m.MigrationsAssembly(typeof(eVoteDbContext).Assembly.FullName))
             , ServiceLifetime.Transient);
 
-
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient<IAllianceRepository, AllianceRepository>();
+            services.AddTransient<IAllianceRequestRepository, AllianceRequestRepository>();
+            services.AddTransient<ICandidacyRepository, CandidacyRepository>();
+            services.AddTransient<ICandidateRepository, CandidateRepository>();
+            services.AddTransient<ICitizenRepository, CitizenRepository>();
+            services.AddTransient<IElectionRepository, ElectionRepository>();
+            services.AddTransient<IElectivePositionRepository, ElectivePositionRepository>();
+            services.AddTransient<IPartyLeaderRepository, PartyLeaderRepository>();
+            services.AddTransient<IPartyRepository, PartyRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IVoteRepository, VoteRepository>();
         }
+
     }
 }

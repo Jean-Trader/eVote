@@ -8,11 +8,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\eVote.Core.Domain\eVote.Core.Domain.csproj" />
+    <ProjectReference Include="..\eVote.Infraestructure.Shared\eVote.Infrastructure.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
