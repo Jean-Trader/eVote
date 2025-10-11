@@ -12,6 +12,8 @@ builder.Services.AddPersistenceInfrastructure(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 
 var app = builder.Build();
 

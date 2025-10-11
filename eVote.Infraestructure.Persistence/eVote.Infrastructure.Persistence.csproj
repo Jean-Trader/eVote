@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\eVote.Core.Application\eVote.Core.Application.csproj" />
     <ProjectReference Include="..\eVote.Core.Domain\eVote.Core.Domain.csproj" />
     <ProjectReference Include="..\eVote.Infraestructure.Shared\eVote.Infrastructure.Shared.csproj" />
   </ItemGroup>

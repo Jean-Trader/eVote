@@ -1,11 +1,6 @@
 ﻿using eVote.Core.Application.Interfaces;
 using eVote.Core.Application.Services;
-using eVote.Core.Domain.Entities;
-using eVote.Core.Domain.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 namespace eVote.Core.Application
 {
     public static class ServiceRegistration
@@ -14,7 +9,7 @@ namespace eVote.Core.Application
         public static void AddApplicationServices(this IServiceCollection services)
         {
             // Especifica los ensamblados donde están los perfiles de AutoMapper
-           
+            
             services.AddTransient<IAllianceService, AllianceService>();
             services.AddTransient<IAllianceRequestService, AllianceRequestService>();
             services.AddTransient<ICandidacyServices, CandidacyService>();

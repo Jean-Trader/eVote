@@ -20,6 +20,7 @@ namespace eVote.Infrastructure.Persistence
             m => m.MigrationsAssembly(typeof(eVoteDbContext).Assembly.FullName))
             , ServiceLifetime.Transient);
 
+            services.AddScoped<DbContext, eVoteDbContext>();
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IAllianceRepository, AllianceRepository>();
             services.AddTransient<IAllianceRequestRepository, AllianceRequestRepository>();
@@ -32,6 +33,9 @@ namespace eVote.Infrastructure.Persistence
             services.AddTransient<IPartyRepository, PartyRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IVoteRepository, VoteRepository>();
+
+            
+            
         }
 
     }

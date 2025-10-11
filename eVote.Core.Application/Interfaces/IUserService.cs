@@ -10,5 +10,6 @@ namespace eVote.Core.Application.Interfaces
         Task<List<UserDto>> GetAll();
         Task<UserDto?> GetById(int id);
         Task<UserDto?> LoginAsync(LoginDto dto);
+        void DefaultUser();
     }
 }
