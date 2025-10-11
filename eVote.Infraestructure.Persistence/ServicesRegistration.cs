@@ -5,11 +5,10 @@ using eVote.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace eVote.Infraestructure.Persistence
+namespace eVote.Infrastructure.Persistence
 {
-    public static class SerevicesRegistration
+    public static class ServicesRegistration
     {
         public static void AddPersistenceInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {

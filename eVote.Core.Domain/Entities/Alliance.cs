@@ -1,4 +1,5 @@
 ﻿using eVote.Core.Domain.CommonEntity;
+
 namespace eVote.Core.Domain.Entities
 {
     public class Alliance : BaseEntity<int>

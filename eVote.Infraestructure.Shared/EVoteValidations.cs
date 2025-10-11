@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace eVote.Infrastructure.Shared
 {
-    internal class EVoteValidations
+    public class EVoteValidations
     {
+        public EVoteValidations() { }
+
+        
     }
 }

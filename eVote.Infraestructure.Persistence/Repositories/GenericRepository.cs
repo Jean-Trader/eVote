@@ -41,7 +41,9 @@ namespace eVote.Infrastructure.Persistence.Repositories
         public virtual async Task<Entity?> GetByIdAsync(int id) 
         {
           var entity = await _context.Set<Entity>().FindAsync(id);
-          CommonException.NotFound(entity!, $"{typeof(Entity).Name} with id {id} not found");
+
+          CommonException.NotFound(entity!, $"not found");
+
           return entity;
 
         }

@@ -9,10 +9,8 @@ namespace eVote.Core.Domain.Interfaces
         Task<IEnumerable<Entity>> GetAllAsync();
         Task<Entity?> GetByIdAsync(int id);
         Task<bool> DeleteAsync(int id);
-        Task<List<Entity>>AddRangeAsync(List<Entity> entities);
         IQueryable<Entity>GetAllQuery();
-        List<Entity> GetAllListWithInclude(List<string> includes);
-        IQueryable<Entity> GetAllQueryWithInclude(List<string> includes);
+
 
     }
 }
