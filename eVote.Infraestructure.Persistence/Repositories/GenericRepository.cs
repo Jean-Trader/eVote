@@ -108,7 +108,7 @@ namespace eVote.Infrastructure.Persistence.Repositories
             return result; 
         }
 
-        public virtual List<Entity> GetAllListWithInclude(List<string> includes) 
+        public virtual List<Entity>GetAllListWithInclude(List<string> includes) 
         { 
           var query = _context.Set<Entity>().AsQueryable();
 

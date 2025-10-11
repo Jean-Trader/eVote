@@ -1,4 +1,5 @@
 ﻿using eVote.Core.Application.ViewModels.CommonEntity;
+using eVote.Core.Application.ViewModels.Party;
 using System.ComponentModel.DataAnnotations;
 
 

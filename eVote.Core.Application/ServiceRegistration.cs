@@ -5,6 +5,7 @@ using eVote.Core.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 namespace eVote.Core.Application
 {
     public static class ServiceRegistration
@@ -12,19 +13,19 @@ namespace eVote.Core.Application
 
         public static void AddApplicationServices(this IServiceCollection services)
         {
-            
-            
-            services.AddScoped<IAllianceService, AllianceService>();
-            services.AddScoped<IAllianceRequestService, AllianceRequestService>();
-            services.AddScoped<ICandidacyServices, CandidacyService>();
-            services.AddScoped<ICandidateService, CandidateService>();
-            services.AddScoped<ICitizenServices, CitizenService>();
-            services.AddScoped<IElectionService, ElectionService>();
-            services.AddScoped<IElectivePositionService, ElectivePositionService>();
-            services.AddScoped<IPartyLeaderService, PartyLeaderService>();
-            services.AddScoped<IPartyServices, PartyService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IVoteServices, VoteService>();
+            // Especifica los ensamblados donde están los perfiles de AutoMapper
+           
+            services.AddTransient<IAllianceService, AllianceService>();
+            services.AddTransient<IAllianceRequestService, AllianceRequestService>();
+            services.AddTransient<ICandidacyServices, CandidacyService>();
+            services.AddTransient<ICandidateService, CandidateService>();
+            services.AddTransient<ICitizenServices, CitizenService>();
+            services.AddTransient<IElectionService, ElectionService>();
+            services.AddTransient<IElectivePositionService, ElectivePositionService>();
+            services.AddTransient<IPartyLeaderService, PartyLeaderService>();
+            services.AddTransient<IPartyServices, PartyService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IVoteServices, VoteService>();
         }
 
     }

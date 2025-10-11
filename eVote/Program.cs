@@ -1,4 +1,7 @@
-using eVote.Infraestructure.Persistence;
+using AutoMapper;
+using eVote.Infrastructure.Persistence;
+using eVote.Core.Application;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddPersistenceInfrastructure(builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

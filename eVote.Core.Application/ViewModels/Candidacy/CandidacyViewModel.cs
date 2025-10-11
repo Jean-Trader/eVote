@@ -1,5 +1,8 @@
 ﻿
+using eVote.Core.Application.ViewModels.Candidate;
 using eVote.Core.Application.ViewModels.CommonEntity;
+using eVote.Core.Application.ViewModels.ElectivePosition;
+using eVote.Core.Application.ViewModels.Party;
 using System.ComponentModel.DataAnnotations;
 
 namespace eVote.Core.Application.ViewModels.Candidacy

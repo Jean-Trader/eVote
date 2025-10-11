@@ -9,6 +9,6 @@ namespace eVote.Core.Domain.Interfaces
 {
     public interface IVoteRepository : IGenericRepository<Vote>
     {
-        List<Alliance> GetAllListWithInclude(List<string> includes);
+        
     }
 }

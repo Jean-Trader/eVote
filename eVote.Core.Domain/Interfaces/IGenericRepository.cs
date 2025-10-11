@@ -1,4 +1,6 @@
 ﻿
+using eVote.Core.Domain.Entities;
+
 namespace eVote.Core.Domain.Interfaces
 {
     public interface IGenericRepository<Entity> 
@@ -10,6 +12,7 @@ namespace eVote.Core.Domain.Interfaces
         Task<Entity?> GetByIdAsync(int id);
         Task<bool> DeleteAsync(int id);
         IQueryable<Entity>GetAllQuery();
+        List<Entity> GetAllListWithInclude(List<string> includes);
 
 
     }

@@ -1,4 +1,5 @@
 ﻿using eVote.Core.Application.ViewModels.CommonEntity;
+using eVote.Core.Application.ViewModels.Party;
 
 
 namespace eVote.Core.Application.ViewModels.Candidate

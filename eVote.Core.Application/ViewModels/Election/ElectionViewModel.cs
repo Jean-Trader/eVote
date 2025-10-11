@@ -1,5 +1,7 @@
 ﻿
 using eVote.Core.Application.ViewModels.CommonEntity;
+using eVote.Core.Application.ViewModels.ElectivePosition;
+using eVote.Core.Application.ViewModels.Vote;
 using System.ComponentModel.DataAnnotations;
 
 
