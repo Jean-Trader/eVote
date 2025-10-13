@@ -13,6 +13,7 @@ namespace eVote.Core.Application.Mappers.DtoToViewModel
                 .ReverseMap()
                 .ForMember(dest => dest.Party, opt => opt.Ignore())
                 .ForMember(dest => dest.User, opt => opt.Ignore());
+
         }
     }
 }

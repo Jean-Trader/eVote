@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using eVote.Core.Application.Interfaces;
 using eVote.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,27 +7,17 @@ namespace eVote.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IDefaultUser _defaultUser;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IDefaultUser defaultUser)
         {
-            _logger = logger;
+            _defaultUser = defaultUser;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await _defaultUser.DefaultEntity();
             return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

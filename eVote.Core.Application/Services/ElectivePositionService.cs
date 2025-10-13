@@ -6,14 +6,14 @@ using eVote.Core.Domain.Interfaces;
 
 namespace eVote.Core.Application.Services
 {
-    public class ElectivePositionService : GenericService<ElectivePosition, ElectivePositionDto>, IElectivePositionService
+    public class ElectivePositionService : GenericServiceWithStatus<ElectivePosition, ElectivePositionDto>, IElectivePositionService
     {
-        IElectivePositionRepository _electivePositionRepository;
-        IMapper _mapper;
+        protected IElectivePositionRepository _electivePositionRepository;
+
         public ElectivePositionService(IGenericRepository<ElectivePosition> repository, IMapper mapper, IElectivePositionRepository repo) : base(repository, mapper)
         {
             _electivePositionRepository = repo;
-            _mapper = mapper;
+           
         }
         public List<ElectivePositionDto> GetAllWithDetails()
         {

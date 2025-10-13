@@ -3,12 +3,12 @@ using eVote.Core.Application.Interfaces;
 using eVote.Core.Domain.Interfaces;
 namespace eVote.Core.Application.Services
 {
-    public class GenericService<Entity,EntityDto> : IGenericsRepository<EntityDto> 
+    public class GenericService<Entity,EntityDto> : IGenericsServices<EntityDto> 
         where EntityDto : class
         where Entity : class
     {
-        private readonly IGenericRepository<Entity> _repo;
-        private readonly IMapper _mapper;
+        protected readonly IGenericRepository<Entity> _repo;
+        protected readonly IMapper _mapper;
 
 
         public GenericService(IGenericRepository<Entity> repository, IMapper mapper ) 
@@ -97,6 +97,32 @@ namespace eVote.Core.Application.Services
                 var entity = _mapper.Map<Entity>(entityDto);
                 var result = await _repo.UpdateAsync(id, entity);
                 return _mapper.Map<EntityDto>(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null!;
+            }
+        }
+
+        public async Task<EntityDto> DesactivateAsync(int id)
+        {
+            try
+            {
+                var entity = await _repo.GetByIdAsync(id);
+                if (entity == null)
+                {
+                    return null!;
+                }
+                var property = entity.GetType().GetProperty("Status");
+                if (property != null && property.PropertyType == typeof(bool))
+                {
+                    bool currentValue = (bool)property.GetValue(entity)!;
+                    property.SetValue(entity, !currentValue);
+                    var updatedEntity = await _repo.UpdateAsync(id, entity);
+                    return _mapper.Map<EntityDto>(updatedEntity);
+                }
+                return null!;
             }
             catch (Exception ex)
             {

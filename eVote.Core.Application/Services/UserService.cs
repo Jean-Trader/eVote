@@ -42,7 +42,7 @@ namespace eVote.Core.Application.Services
            return true;
         }
 
-        public async Task<List<UserDto>> GetAll()
+        public async Task<List<UserDto>> GetAllAsync()
         {
               var users = await _userRepository.GetAllAsync();
               var usersDto = users.Select(user => _mapper.Map<UserDto>(user)).ToList();
@@ -59,8 +59,15 @@ namespace eVote.Core.Application.Services
         public async Task<UserDto?> LoginAsync(LoginDto dto)
         {
             var user = await _userRepository.LoginAsync(dto.UserName, EncryptionPassword.Sha256Hash(dto.Password));
-
-            CommonException.NotFound(user!, $"not found");
+            if (user == null){
+                Console.WriteLine($"Usuario no encontrado: {dto.UserName}");
+                throw new EVoteExceptions("Usuario o contraseña incorrectos.");
+            }
+            if (!user.Status)
+            {
+                Console.WriteLine($"Usuario inactivo: {user.UserName}");
+                throw new EVoteExceptions("El usuario está inactivo.");
+            }
             return _mapper.Map<UserDto>(user);
         }
 
@@ -71,6 +78,23 @@ namespace eVote.Core.Application.Services
             _mapper.Map(dto, existingUser);
             var result = await _userRepository.UpdateAsync(dto.Id, existingUser);
             return _mapper.Map<UserDto>(result);
+        }
+
+        public async Task<bool> ChangeStatusAsync(int id) 
+        {
+            var user = await _userRepository.GetByIdAsync(id);
+            if (user == null) 
+            {
+                return false;
+            }
+
+            if (user.Status == true) 
+            { 
+             user.Status = false;
+            }
+            else { user.Status = true; }
+            return true;
+
         }
     }
 }

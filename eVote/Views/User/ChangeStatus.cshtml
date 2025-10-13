@@ -1,0 +1,36 @@
+﻿@using eVote.Core.Application.ViewModels.User
+@model UserViewModel
+
+@if(Model.Status == true)
+{
+    ViewData["Title"] = "Desactivar Usuario";
+}
+else
+{
+    ViewData["Title"] = "Activar Usuario";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-danger text-white text-center">
+                <h4 class="mb-0">
+                    ¿Estás seguro de que deseas
+                    @(Model.Status == false ? "activar" : "desactivar")
+                    el usuario: <strong>@Model.UserName</strong>?
+                </h4>
+            </div>
+            <div class="card-body text-center">
+                <form asp-controller="User" asp-action="ChangeStatus" method="POST">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-danger me-3 px-4">
+                            @(Model.Status == true ? "Desactivar" : "Activar")
+                        </button>
+                        <a asp-controller="User" asp-action="Index" class="btn btn-outline-warning px-4"> Cancelar </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

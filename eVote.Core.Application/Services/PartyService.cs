@@ -5,14 +5,13 @@ using eVote.Core.Domain.Entities;
 using eVote.Core.Domain.Interfaces;
 namespace eVote.Core.Application.Services
 {
-    public class PartyService : GenericService<Party, PartyDto>, IPartyServices
+    public class PartyService : GenericServiceWithStatus<Party, PartyDto>, IPartyServices
     {
         IPartyRepository _partyRepository;
-        IMapper _mapper;
+
         public PartyService(IGenericRepository<Party> repository, IMapper mapper, IPartyRepository repo) : base(repository, mapper)
         {
             _partyRepository = repo;
-            _mapper = mapper;
         }
         public List<PartyDto> GetAllWithDetails()
         {

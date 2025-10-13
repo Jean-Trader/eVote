@@ -2,7 +2,7 @@
 
 namespace eVote.Core.Application.Interfaces
 {
-    public interface IPartyServices : IGenericsRepository<PartyDto>
+    public interface IPartyServices : IGenericServiceWithStatus<PartyDto>
     {
         List<PartyDto> GetAllWithDetails();
     }

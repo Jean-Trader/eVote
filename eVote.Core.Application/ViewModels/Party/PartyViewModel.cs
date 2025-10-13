@@ -1,5 +1,6 @@
 ﻿using eVote.Core.Application.ViewModels.Candidate;
 using eVote.Core.Application.ViewModels.CommonEntity;
+using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
 namespace eVote.Core.Application.ViewModels.Party
@@ -12,8 +13,9 @@ namespace eVote.Core.Application.ViewModels.Party
         public required string Description { get; set; }
         [Required(ErrorMessage = "Acronym Required")]
         public required string Acronym { get; set; }
+        [DataType(DataType.Upload)]
         [Required(ErrorMessage = "Logo Required")]
-        public required string Logo { get; set; }
+        public IFormFile? LogoFile { get; set; }
         public required bool Status { get; set; } = true;
         public ICollection<CandidateViewModel>? Candidates { get; set; }
     }

@@ -6,7 +6,7 @@ using eVote.Core.Domain.Entities;
 using eVote.Core.Domain.Interfaces;
 namespace eVote.Core.Application.Services
 {
-    public class DefaultUser : IDefaultEntity
+    public class DefaultUser : IDefaultUser
     {
         private readonly IUserRepository _userService;
 
@@ -23,7 +23,7 @@ namespace eVote.Core.Application.Services
             {
                 var adminUser = new User
                 {
-                    Id = 1,
+                    Id = 0,
                     FirstName = "Admin",
                     LastName = "Sistema",
                     UserName = "Jean",

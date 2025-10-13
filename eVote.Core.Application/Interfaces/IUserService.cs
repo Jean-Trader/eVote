@@ -7,9 +7,11 @@ namespace eVote.Core.Application.Interfaces
         Task<UserDto?> AddAsync(CreateUserDto dto);
         Task<UserDto?> UpdateAsync(CreateUserDto dto);
         Task<bool> DeleteAsync(int id);
-        Task<List<UserDto>> GetAll();
+        Task<List<UserDto>> GetAllAsync();
         Task<UserDto?> GetById(int id);
         Task<UserDto?> LoginAsync(LoginDto dto);
-        void DefaultUser();
+        Task<bool> ChangeStatusAsync(int id);
+
+
     }
 }

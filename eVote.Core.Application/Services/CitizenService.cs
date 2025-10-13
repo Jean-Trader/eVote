@@ -6,14 +6,13 @@ using eVote.Core.Domain.Interfaces;
 
 namespace eVote.Core.Application.Services
 {
-    public class CitizenService : GenericService<Citizen, CitizenDto>, ICitizenServices
+    public class CitizenService : GenericServiceWithStatus<Citizen, CitizenDto>, ICitizenServices
     {
-        ICitizenRepository _citizenRepository;
-        IMapper _mapper;
+        protected ICitizenRepository _citizenRepository;
+       
         public CitizenService(IGenericRepository<Citizen> repository, IMapper mapper, ICitizenRepository repo) : base(repository, mapper)
         {
             _citizenRepository = repo;
-            _mapper = mapper;
         }
         public List<CitizenDto> GetAllWithDetails()
         {

@@ -10,8 +10,13 @@ namespace eVote.Core.Application.Mappers.DtoToViewModel
         {
             CreateMap<PartyDto, PartyViewModel>()
                 .ForMember(dest => dest.Candidates, opt => opt.MapFrom(src => src.Candidates))
+                .ForMember(dest => dest.LogoFile, opt => opt.Ignore())
                 .ReverseMap()
                 .ForMember(dest => dest.Candidates, opt => opt.Ignore());
+                
+                
+               
+
 
         }
     }

@@ -8,8 +8,11 @@ namespace eVote.Core.Application.Mappers.DtoToViewModel
     {
         public UserViewModelMappingProfile()
         {
-            CreateMap<UserDto, UserViewModel>().
-            ReverseMap();
+            CreateMap<UserDto, CreateUserViewModel>()
+           .ForMember(dest => dest.ConfirmPassword, opt => opt.Ignore())
+           .ReverseMap();
+       
+
         }
     }
 }

@@ -2,7 +2,7 @@
 using eVote.Core.Application.Interfaces;
 namespace eVote.Core.Application.Interfaces
 {
-    public interface IAllianceService : IGenericsRepository<AllianceDto>
+    public interface IAllianceService : IGenericsServices<AllianceDto>
     {
         List<AllianceDto> GetAllWithDetails();
     }

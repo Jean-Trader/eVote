@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eVote.Core.Application.Interfaces
 {
-    public interface IAllianceRequestService : IGenericsRepository<AllianceRequestDto>
+    public interface IAllianceRequestService : IGenericsServices<AllianceRequestDto>
     {
         List<AllianceRequestDto> GetAllWithDetails();
     }

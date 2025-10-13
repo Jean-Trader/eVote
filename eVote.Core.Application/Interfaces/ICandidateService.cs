@@ -4,7 +4,7 @@ using eVote.Core.Application.DTOs.Candidate;
 
 namespace eVote.Core.Application.Interfaces
 {
-    public interface ICandidateService : IGenericsRepository<CandidateDto>
+    public interface ICandidateService : IGenericsServices<CandidateDto>
     {
         List<CandidateDto> GetAllWithDetails();
     }

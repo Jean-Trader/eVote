@@ -1,8 +1,58 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using eVote.Core.Application.ViewModels.Election
+
+@model List<ElectoralResumeViewModel>
+@{
+    ViewData["Title"] = "Administrador";
+    Layout = "_LayoutAdmin";
+}
+@if (ViewBag.ErrorMessage != null)
+{
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    @Html.Raw(ViewBag.ErrorMessage)
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+</div>
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row-mb-2">
+    <form asp-controller="Admin" asp-action="Index" method="post">
+        <select name="Year" class="form-select">
+            @foreach (var year in ViewBag.AvailableYears)
+            {
+                <option value="@year">
+                    @year
+                </option>
+            }
+        </select>
+        <button type="submit">Obtener</button>
+    </form>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="table-responsive" style="max-width: 1300px;">
+        <table class="table table-hover text-center align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Año</th>
+                    <th>partidos</th>
+                    <th>Cantidatos</th>
+                    <th>Votantes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Model != null){
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.ElectionDate</td>
+                        <td>@item.PartiesCount</td>
+                        <td>@item.CandidatesCount</td>
+                        <td>@item.TotalVotes</td>
+                    </tr>
+                }
+               }
+            </tbody>
+        </table>
+    </div>
 </div>

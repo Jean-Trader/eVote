@@ -9,11 +9,11 @@ namespace eVote.Core.Application.Services
     public class AllianceRequestService : GenericService<AllianceRequest,AllianceRequestDto>, IAllianceRequestService
     {
         private IAllianceRequestRepository _allianceRequestRepository;
-        private IMapper _mapper;
+       
         public AllianceRequestService(IGenericRepository<AllianceRequest> repository, IMapper mapper, IAllianceRequestRepository repo) : base(repository, mapper)
         {
             _allianceRequestRepository = repo;
-            _mapper = mapper;
+            
         }
         public List<AllianceRequestDto> GetAllWithDetails()
         {

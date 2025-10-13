@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace eVote.Core.Application.Interfaces
 {
-    public interface IGenericsRepository<Entity> 
+    public interface IGenericsServices<Entity> 
         where Entity : class
     {
         Task<List<Entity>> GetAllAsync();

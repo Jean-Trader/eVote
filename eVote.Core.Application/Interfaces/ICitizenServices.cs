@@ -2,7 +2,7 @@
 
 namespace eVote.Core.Application.Interfaces
 {
-    public interface ICitizenServices : IGenericsRepository<CitizenDto>
+    public interface ICitizenServices : IGenericServiceWithStatus<CitizenDto>
     {
         List<CitizenDto> GetAllWithDetails();
     }

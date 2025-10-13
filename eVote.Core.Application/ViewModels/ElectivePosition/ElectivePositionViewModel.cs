@@ -14,6 +14,6 @@ namespace eVote.Core.Application.ViewModels.ElectivePosition
         public required string Name { get; set; }
         [Required(ErrorMessage = "Description Required")]
         public required string Description { get; set; }
-        public required bool Status { get; set; } = true;
+        public bool? Status { get; set; } 
     }
 }

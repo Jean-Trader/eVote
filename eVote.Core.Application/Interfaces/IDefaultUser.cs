@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eVote.Infrastructure.Shared
+namespace eVote.Core.Application.Interfaces
 {
-    public class EVoteValidations
+    public interface IDefaultUser : IDefaultEntity
     {
-        public EVoteValidations() { }
-
-        
     }
 }

@@ -1,4 +1,5 @@
-﻿using eVote.Core.Domain.Entities;
+﻿using eVote.Core.Application.Interfaces;
+using eVote.Core.Application.Services;
 using eVote.Core.Domain.Interfaces;
 using eVote.Infraestructure.Persistence.Context;
 using eVote.Infrastructure.Persistence.Repositories;
@@ -33,9 +34,11 @@ namespace eVote.Infrastructure.Persistence
             services.AddTransient<IPartyRepository, PartyRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IVoteRepository, VoteRepository>();
+            services.AddTransient<IValidateElection, ValidateElection>();
+            
 
-            
-            
+
+
         }
 
     }
