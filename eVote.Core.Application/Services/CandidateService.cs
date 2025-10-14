@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace eVote.Core.Application.Services
 {
-    public class CandidateService : GenericService<Candidate,CandidateDto>, ICandidateService
+    public class CandidateService : GenericServiceWithStatus<Candidate,CandidateDto>, ICandidateService
     {
         private readonly ICandidateRepository _candidateRepo;
-        private readonly IMapper _mapper;
+     
         public CandidateService(IGenericRepository<Candidate> genericRepo,IMapper mapper ,ICandidateRepository repo) : base(genericRepo ,mapper)
         {
             _candidateRepo = repo;
-            _mapper = mapper;
+      
 
         }
         public List<CandidateDto> GetAllWithDetails()
