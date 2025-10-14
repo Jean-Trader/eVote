@@ -1,0 +1,31 @@
+﻿@using eVote.Core.Application.ViewModels.Election
+@model ElectionViewModel
+@{
+    ViewData["Title"] = "Finalizar Elección";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-danger text-white text-center">
+                <h4 class="mb-0">
+                    ¿Está seguro que desea finalizar esta elección?
+                </h4>
+            </div>
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <p><strong>Nombre:</strong> @Model.Name</p>
+                    <p><strong>Fecha de Realización:</strong> @Model.ElectionDate?.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Fecha de Creación:</strong> @Model.CreatedDate.ToString("dd/MM/yyyy")</p>
+                </div>
+                <form asp-controller="Election" asp-action="Finalize" method="POST">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-danger me-3 px-4">Aceptar</button>
+                        <a asp-controller="Election" asp-action="Index" class="btn btn-outline-warning px-4">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

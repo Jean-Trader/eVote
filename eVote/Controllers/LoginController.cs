@@ -3,8 +3,6 @@ using eVote.Core.Application.DTOs.User;
 using eVote.Core.Application.Helpers;
 using eVote.Core.Application.Interfaces;
 using eVote.Core.Application.ViewModels.User;
-using eVote.Core.Domain.Enums;
-using eVote.MiddleWares;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eVote.Controllers

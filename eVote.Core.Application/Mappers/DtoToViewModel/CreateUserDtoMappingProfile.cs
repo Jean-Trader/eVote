@@ -10,8 +10,8 @@ namespace eVote.Core.Application.Mappers.DtoToViewModel
             CreateMap<CreateUserDto, CreateUserViewModel>()
                .ForMember(dest => dest.ConfirmPassword, opt => opt.Ignore())
                .ForMember(dest => dest.Role, opt => opt.MapFrom(src =>
-                src.Role == "1" ? 1 :
-                src.Role == "2" ? 2 :0)) 
+                src.Role == "Admin" ? 1 :
+                src.Role == "Political" ? 2 :0)) 
                .ReverseMap()
                .ForMember(dest => dest.Role, opt => opt.MapFrom(src =>
                src.Role == 1 ? "Admin" :

@@ -1,0 +1,93 @@
+﻿@using eVote.Core.Application.ViewModels.Election
+@model ElectionViewModel
+@{
+    ViewData["Title"] = "Resultados de Elección";
+    Layout = "_LayoutAdmin";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.ErrorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="text-center">
+        <h1 class="display-4">Resultados de Elección: @Model.Name</h1>
+        <p class="text-muted">Fecha de Realización: @Model.ElectionDate?.ToString("dd/MM/yyyy")</p>
+    </div>
+</div>
+
+<div class="container border rounded p-4" style="margin-top: 20px;">
+    @if (Model.Votes == null || !Model.Votes.Any())
+    {
+        <div class="text-center">
+            <h5>No hay votos registrados para esta elección</h5>
+        </div>
+    }
+    else
+    {
+        @* Agrupar votos por puesto electivo *@
+        var votesByPosition = Model.Votes
+        .Where(v => v.ElectivePosition != null)
+        .GroupBy(v => v.ElectivePositionId)
+        .OrderBy(g => g.First().ElectivePosition?.Name);
+
+        @foreach (var positionGroup in votesByPosition)
+        {
+            var position = positionGroup.First().ElectivePosition;
+            var totalVotesForPosition = positionGroup.Count();
+
+            <div class="mb-5">
+                <h3 class="text-primary mb-4">@position?.Name</h3>
+
+                @{
+                    var candidateVotes = positionGroup
+                    .Where(v => v.Candidate != null)
+                    .GroupBy(v => v.CandidateId)
+                    .Select(g => new
+                    {
+                        Candidate = g.First().Candidate,
+                        VoteCount = g.Count(),
+                        Percentage = (g.Count() * 100.0 / totalVotesForPosition)
+                    })
+                    .OrderByDescending(x => x.VoteCount);
+                }
+
+
+                <div class="row">
+                    @foreach (var result in candidateVotes)
+                    {
+                        <div class="col-12 col-md-6 col-lg-4 mb-3">
+                            <div class="card h-100 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title text-danger fw-bold">
+                                        @result.Candidate?.FirstName @result.Candidate?.LastName
+                                    </h5>
+                                    <p class="card-subtitle mb-2 text-muted">Partido:</p>
+                                    <p class="card-text">@result.Candidate?.Party?.Name (@result.Candidate?.Party?.Acronym)</p>
+                                    <p class="card-subtitle mb-2 text-muted">Votos Obtenidos:</p>
+                                    <p class="card-text"><strong>@result.VoteCount</strong></p>
+                                    <p class="card-subtitle mb-2 text-muted">Porcentaje:</p>
+                                    <p class="card-text"><strong>@result.Percentage.ToString("F2")%</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <hr class="my-4" />
+            </div>
+        }
+
+        <div class="text-center mt-4">
+            <h4>Total de Votos Emitidos: @Model.Votes.Count()</h4>
+        </div>
+    }
+
+    <div class="text-center mt-4">
+        <a asp-controller="Election" asp-action="Index" class="btn btn-outline-dark">Volver al Listado</a>
+    </div>
+</div>

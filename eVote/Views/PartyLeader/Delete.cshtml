@@ -1,0 +1,29 @@
+﻿@using eVote.Core.Application.ViewModels.PartyLeader
+@model PartyLeaderViewModel
+@{
+    ViewData["Title"] = "Eliminar Asignación";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-danger text-white text-center">
+                 <h4 class="mb-0">  ¿Está seguro que desea desvincular este dirigente político de este partido?</h4>
+            </div>
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <p><strong>Dirigente:</strong> @Model.User?.FirstName @Model.User?.LastName</p>
+                    <p><strong>Partido:</strong> @Model.Party?.Name (@Model.Party?.Acronym)</p>
+                    <p><strong>Fecha de Asignación:</strong> @Model.AssignmentDate.ToString("dd/MM/yyyy")</p>
+                </div>
+                <form asp-controller="PartyLeader" asp-action="Delete" method="POST">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-danger me-3 px-4">Aceptar</button>
+                        <a asp-controller="PartyLeader" asp-action="Index" class="btn btn-outline-warning px-4">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

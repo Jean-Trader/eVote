@@ -24,6 +24,7 @@ namespace eVote.Core.Application
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IVoteServices, VoteService>();
             services.AddTransient<IDefaultUser, DefaultUser>();
+            services.AddTransient<IDashboard, PoliticalDashboard>();
         }
 
     }

@@ -1,0 +1,57 @@
+﻿@using eVote.Core.Application.ViewModels.PartyLeader
+@model List<PartyLeaderViewModel>
+@{
+    ViewData["Title"] = "Asignación de Dirigentes Políticos";
+    Layout = "_LayoutAdmin";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.ErrorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="text-center">
+        <h1 class="display-4">Asignación de Dirigentes Políticos</h1>
+    </div>
+</div>
+
+<div class="row-mb-4">
+    <div class="col-10 col-md-2">
+        <a class="btn btn-outline-success" asp-controller="PartyLeader" asp-action="Create">Agregar Nueva Relación</a>
+    </div>
+</div>
+
+<div class="container border rounded p-4" style="margin-top: 20px;">
+    <div class="row mt-2">
+        @if (Model.Count == 0)
+        {
+            <div class="text-md-center">
+                <h5>Añade alguna asignación de dirigente político</h5>
+            </div>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger fw-bold">Dirigente: @item.User?.FirstName @item.User?.LastName</h5>
+                            <p class="card-subtitle mb-2 text-muted">Partido Político:</p>
+                            <p class="card-text">@item.Party?.Acronym</p>
+                            <p class="card-subtitle mb-2 text-muted">Fecha de Asignación:</p>
+                            <p class="card-text">@item.AssignmentDate.ToString("dd/MM/yyyy")</p>
+                            <div class="mt-3 d-flex justify-content-center">
+                                <a class="btn btn-outline-danger btn-sm px-3" asp-controller="PartyLeader" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

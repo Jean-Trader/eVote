@@ -23,9 +23,9 @@
 
 <div class="col-14 col-md-4 offset-md-3 ">
     <div class="card">
-        <div class="card-header bg-success text-bg-light"><h4 class="text-center">@(editMode ? " Editar el usuario : " + Model.UserName : "Agregar un nuevo ")</h4></div>
+        <div class="card-header bg-success text-bg-light"><h4 class="text-center">@(editMode ? " Editar el usuario : " + Model.UserName : "Agregar un nuevo usuario ")</h4></div>
         <div class="card-body">
-            <form asp-controller="Party" asp-action="@(editMode ? "Edit" : "Create")" method="POST" class="align-content-center">
+            <form asp-controller="User" asp-action="@(editMode ? "Edit" : "Create")" method="POST" class="align-content-center">
                 <input type="hidden" asp-for="Id"/>
                 <div class="mb-3">
                     <label asp-for="FirstName" class="form-label">Nombre:</label>
@@ -63,13 +63,13 @@
                     <select asp-for="Role" class="form-select">
                         <option value="0">Select any option</option>
                         <option value="1">Admin</option>
-                        <option value="2">Investor</option>
+                        <option value="2">Political</option>
                     </select>
                     <span asp-validation-for="Role" class="text-danger"></span>
                 </div>
                 <div>
                     <button type="submit" class="btn btn-outline-dark float-end">guardar</button>
-                    <a asp-controller="Party" asp-action="Index" class="btn btn-outline-dark float-end me-2">Volver</a>
+                    <a asp-controller="User" asp-action="Index" class="btn btn-outline-dark float-end me-2">Volver</a>
                 </div>
             </form>
         </div>

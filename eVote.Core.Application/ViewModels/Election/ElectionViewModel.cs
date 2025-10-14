@@ -12,9 +12,9 @@ namespace eVote.Core.Application.ViewModels.Election
         [Required(ErrorMessage = "Name Required")]
         public required string Name { get; set; }
         public DateTime? ElectionDate { get; set; }
-        public required string Status { get; set; }
+        public string? Status { get; set; }
         [Required(ErrorMessage = "CreatedBy Required")]
-        public required DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public ICollection<VoteViewModel>? Votes { get; set; }
         public ICollection<ElectivePositionViewModel>? ElectivePositions { get; set; }
     }

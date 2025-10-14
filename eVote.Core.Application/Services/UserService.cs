@@ -93,6 +93,8 @@ namespace eVote.Core.Application.Services
              user.Status = false;
             }
             else { user.Status = true; }
+
+            await _userRepository.UpdateAsync(id, user);
             return true;
 
         }

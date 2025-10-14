@@ -38,7 +38,7 @@ namespace eVote.Controllers
 
            List<UserDto> users = await _userService.GetAllAsync();
 
-           var usersVM = _mapper.Map<UserViewModel>(users);
+           var usersVM = _mapper.Map<List<UserViewModel>>(users);
 
             return View(usersVM);
         }
@@ -54,7 +54,7 @@ namespace eVote.Controllers
                 return RedirectToRoute(new { controller = "Login", action = "AccessDenegated" });
             }
 
-            return View(new CreateUserViewModel { FirstName = "",LastName = " ",Email = "",Password = "",
+            return View("Save",new CreateUserViewModel { FirstName = "",LastName = " ",Email = "",Password = "",
                 ConfirmPassword = "", UserName = "",Role = 0,Status = true});
 
         }
@@ -75,13 +75,13 @@ namespace eVote.Controllers
             if (electionActive) 
             {
                 ViewBag.ErrorMessage = "No se puede crear usuarios mientras haya una elección activa";
-                return RedirectToRoute(new {controller = User, action = "Index" });
+                return RedirectToRoute(new {controller = "User", action = "Index" });
             }
 
             if (!ModelState.IsValid) 
             {
                 ViewBag.ErrorMessage = "Datos no validos, inténtelo de nuevo";
-                return View(CVM);
+                return View("Save",CVM);
             }
 
             var users = await _userService.GetAllAsync();
@@ -92,19 +92,19 @@ namespace eVote.Controllers
             if (ValidateUserName) 
             {
               ViewBag.ErrorMessage = "El nombre de usuario no está disponible";
-              return View(CVM);
+              return View("Save", CVM);
             }
 
             if (ValidateEmail)
             {
               ViewBag.ErrorMessage = "Ya existe una cuenta con este correo";
-              return View(CVM);
+              return View("Save",CVM);
             }
 
             if (CVM.Password != CVM.ConfirmPassword) 
             {
                ViewBag.ErrorMessage = " Las contraseñas no coinciden, verifica la contraseña y vuelva  intentarlo";
-               return View(CVM);
+               return View("Save",CVM);
             }
 
             CreateUserDto userDto = _mapper.Map<CreateUserDto>(CVM);
@@ -134,6 +134,7 @@ namespace eVote.Controllers
             ViewBag.EditMode = true;
             return View("Save", vm);
         }
+        [HttpPost]
         public async Task<IActionResult> Edit(CreateUserViewModel vm)
         {
             if (!_sessions.HasUser())
@@ -187,7 +188,7 @@ namespace eVote.Controllers
                 ViewBag.ErrorMessage = "No se ha encontrado el usuario";
                 return RedirectToRoute(new { controller = "User", action = "Index" });
             }
-            return View();
+            return View(user);
         }
         [HttpPost]
         public async Task<IActionResult> ChangeStatus(int id)
@@ -212,14 +213,15 @@ namespace eVote.Controllers
 
                 if (result == false)
                 {
-                    ViewBag.ErrorMessage = "No se ha encontrado al ciudadano";
+                    ViewBag.ErrorMessage = "No se ha encontrado al usuario";
                     return RedirectToRoute(new { controller = "User", action = "Index" });
                 }
+                
                 return RedirectToRoute(new { controller = "User", action = "Index" });
             }
             catch (Exception ex)
             {
-                ViewBag.ErrorMessage = "Error al desactivar ciudadano: " + ex.Message;
+                ViewBag.ErrorMessage = "Error al cambiar estado del  usuario: " + ex.Message;
                 return RedirectToRoute(new { controller = "User", action = "Index" });
             }
         }
