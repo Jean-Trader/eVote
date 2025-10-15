@@ -1,0 +1,27 @@
+﻿@using eVote.Core.Application.ViewModels.Candidate
+@model CandidateViewModel
+
+@{
+    ViewData["Title"] = Model.Status ? "Desactivar candidato" : "Activar candidato";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-danger text-white text-center">
+                <h4 class="mb-0">
+                    ¿Está seguro que desea @(Model.Status ? "desactivar" : "activar") al candidato @Model.FirstName @Model.LastName?
+                </h4>
+            </div>
+            <div class="card-body text-center">
+                <form asp-controller="Candidate" asp-action="ChangeStatus" method="POST">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex justify-content-around mt-4">
+                        <button type="submit" class="btn btn-danger"> Sí, @(Model.Status ? "Desactivar" : "Activar") </button>
+                        <a asp-controller="Candidate" asp-action="Index" class="btn btn-secondary"> Cancelar </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

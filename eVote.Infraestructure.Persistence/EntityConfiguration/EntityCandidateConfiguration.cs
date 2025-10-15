@@ -14,7 +14,6 @@ namespace eVote.Infrastructure.Persistence.EntityConfiguration
             builder.Property(c => c.LastName).IsRequired().HasMaxLength(50);
             builder.Property(c => c.Photo).IsRequired().HasMaxLength(256);
             builder.Property(c => c.Status).IsRequired();
-            builder.Property(c => c.PartyId).IsRequired();
             
             builder.HasOne<Party>(c => c.Party)
                   .WithMany(p => p.Candidates)

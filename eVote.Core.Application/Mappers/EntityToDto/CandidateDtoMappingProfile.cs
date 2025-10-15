@@ -10,8 +10,10 @@ namespace eVote.Core.Application.Mappers.EntityToDto
         {
             CreateMap<Candidate, CandidateDto>()
                 .ForMember(dest => dest.Party, opt => opt.MapFrom(src => src.Party))
+                .ForMember(dest => dest.PartyId, opt => opt.MapFrom(src => src.PartyId == 0 ? null : src.PartyId ))
                 .ReverseMap()
-                .ForMember(dest => dest.Party, opt => opt.Ignore());
+                .ForMember(dest => dest.Party, opt => opt.Ignore())
+                .ForMember(dest => dest.PartyId, opt => opt.MapFrom(src => src.PartyId == 0 ? null : src.PartyId));
         }
     }
 }

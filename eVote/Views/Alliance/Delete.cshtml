@@ -1,0 +1,35 @@
+﻿@using eVote.Core.Application.ViewModels.AllianceRequest
+@model AllianceRequestViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Solicitud";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-danger text-white text-center">
+                <h4 class="mb-0">
+                    ¿Está seguro que desea eliminar la solicitud de alianza con el partido
+                    @Model.ReceivingParty?.Name (@Model.ReceivingParty?.Acronym)?
+                </h4>
+            </div>
+
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <p><strong>Partido destino:</strong> @Model.ReceivingParty?.Name (@Model.ReceivingParty?.Acronym)</p>
+                    <p><strong>Fecha de solicitud:</strong> @Model.RequestDate.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Estado:</strong> @Model.Status</p>
+                </div>
+
+                <form asp-controller="Alliance" asp-action="DeleteRequest" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit" class="btn btn-danger me-3 px-4">Aceptar</button>
+                        <a asp-controller="Alliance" asp-action="Index" class="btn btn-outline-warning px-4">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

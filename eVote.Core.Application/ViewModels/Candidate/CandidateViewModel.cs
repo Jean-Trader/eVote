@@ -9,7 +9,7 @@ namespace eVote.Core.Application.ViewModels.Candidate
     {
         public required string Photo { get; set; }
         public required bool Status { get; set; } = true;
-        public required int PartyId { get; set; }
+        public int? PartyId { get; set; } = null;
         public PartyViewModel? Party { get; set; }
         public required string Description { get; set; }
       

@@ -1,0 +1,76 @@
+﻿@using eVote.Core.Application.ViewModels.Candidate
+@model List<CandidateViewModel>
+
+@{
+    ViewData["Title"] = "Candidatos";
+    Layout = "_LayoutPolitical";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.ErrorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="row">
+    <div class="text-center">
+        <h1 class="display-4">Candidatos</h1>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-10 col-md-2">
+        <a class="btn btn-outline-success" asp-controller="Candidate" asp-action="Create">Añadir Candidato</a>
+    </div>
+</div>
+
+<div class="container border rounded p-4" style="margin-top: 20px;">
+    <div class="row mt-2">
+        @if (Model.Count == 0)
+        {
+            <div class="text-md-center">
+                <h5>Añade algún candidato</h5>
+            </div>
+        }
+        else
+        {
+            @foreach (var candidate in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card h-100 shadow-sm border-0">
+                        <img src="@candidate.Photo" class="card-img-top responsive-image" alt="@candidate.FirstName @candidate.LastName">
+                        <div class="card-body">
+                            <h5 class="card-title text-danger fw-bold">@candidate.FirstName @candidate.LastName</h5>
+                            <p class="card-subtitle mb-2 text-muted">Puesto asociado:</p>
+                            <p class="card-text">
+                                @(string.IsNullOrEmpty(candidate.Description) ? "Sin puesto asociado" : candidate.Description)
+                            </p>
+                            <p class="card-text">
+                                <strong>Estatus:</strong>
+                                <span class="@(candidate.Status ? "text-success" : "text-danger")">
+                                    @(candidate.Status ? "Activado" : "Desactivado")
+                                </span>
+                            </p>
+                            <div class="mt-3 d-flex justify-content-between">
+                                <a class="btn btn-outline-warning btn-sm px-3"
+                                   asp-controller="Candidate"
+                                   asp-action="Edit"
+                                   asp-route-id="@candidate.Id">
+                                    Editar
+                                </a>
+                                <a class="btn btn-outline-danger btn-sm px-3"
+                                   asp-controller="Candidate"
+                                   asp-action="ChangeStatus"
+                                   asp-route-id="@candidate.Id">
+                                    @(candidate.Status ? "Desactivar" : "Activar")
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

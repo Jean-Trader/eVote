@@ -74,6 +74,14 @@ namespace eVote.Controllers
                 return RedirectToRoute(new { controller = "Citizen", action = "Index" });
             }
 
+             var citizens = await _citizenService.GetAllAsync();
+
+            bool duplicate = citizens.Any(c => c.IdentificationNumber == vm.IdentificationNumber);
+            if (duplicate) 
+            {
+                ViewBag.ErrorMessage = "Ya hay un ciudadano con esta identificación";
+                return RedirectToRoute(new { controller = "Citizen", action = "Index" });
+            }
             try 
             {
                 CitizenDto citizenDto = _mapper.Map<CitizenDto>(vm);

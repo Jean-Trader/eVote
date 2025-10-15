@@ -1,0 +1,45 @@
+﻿@using eVote.Core.Application.ViewModels.AllianceRequest
+@model AllianceRequestViewModel
+
+@{
+    var action = ViewBag.Action as string;
+    ViewData["Title"] = action == "Accept" ? "Aceptar Alianza" : "Rechazar Alianza";
+}
+
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-lg">
+            <div class="card-header @(action == "Accept" ? "bg-success" : "bg-danger") text-white text-center">
+                <h4 class="mb-0">
+                    ¿Está seguro que desea @(action == "Accept" ? "aceptar" : "rechazar")
+                    la alianza con el partido @Model.RequestingParty?.Name (@Model.RequestingParty?.Acronym)?
+                </h4>
+            </div>
+
+            <div class="card-body text-center">
+                <div class="mb-3">
+                    <p><strong>Partido solicitante:</strong> @Model.RequestingParty?.Name (@Model.RequestingParty?.Acronym)</p>
+                    <p><strong>Fecha de solicitud:</strong> @Model.RequestDate.ToString("dd/MM/yyyy")</p>
+                </div>
+
+                <form asp-controller="Alliance"
+                      asp-action="@(action == "Accept" ? "AcceptRequest" : "RejectRequest")"
+                      method="post">
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="d-flex justify-content-center mt-3">
+                        <button type="submit"
+                                class="btn @(action == "Accept" ? "btn-success" : "btn-danger") me-3 px-4">
+                            @(action == "Accept" ? "Aceptar" : "Rechazar")
+                        </button>
+
+                        <a asp-controller="Alliance" asp-action="Index" class="btn btn-outline-warning px-4">
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

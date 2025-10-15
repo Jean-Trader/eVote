@@ -9,11 +9,10 @@ namespace eVote.Core.Application.Services
     public class PartyLeaderService : GenericService<PartyLeader, PartyLeaderDto>, IPartyLeaderService
     {
         IPartyLeaderRepository _partyLeaderRepository;
-        IMapper _mapper;
+      
         public PartyLeaderService(IGenericRepository<PartyLeader> repository, IMapper mapper, IPartyLeaderRepository repo) : base(repository, mapper)
         {
             _partyLeaderRepository = repo;
-            _mapper = mapper;
         }
 
         public List<PartyLeaderDto> GetAllWithDetails()

@@ -1,0 +1,62 @@
+﻿@using eVote.Core.Application.ViewModels.Candidate
+@model CreateCandidateViewModel
+
+@{
+    bool editMode = ViewBag.EditMode ?? false;
+
+    ViewData["Title"] = editMode ? "Editar candidato" : "Agregar candidato";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.ErrorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="col-12 col-md-6 offset-md-3">
+    <div class="card">
+        <div class="card-header bg-success text-bg-light">
+            <h4 class="text-center">@((editMode) ? "Editar candidato" : "Agregar un nuevo candidato")</h4>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Candidate" asp-action="@(editMode ? "Edit" : "Create")" method="POST" enctype="multipart/form-data" class="align-content-center">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="PartyId" />
+                <input type="hidden" asp-for="Status" />
+
+                <div class="mb-3">
+                    <label asp-for="FirstName" class="form-label">Nombre:</label>
+                    <input class="form-control" asp-for="FirstName" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label">Apellido:</label>
+                    <input class="form-control" asp-for="LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Descripción:</label>
+                    <textarea class="form-control" asp-for="Description" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Photo" class="form-label">Foto:</label>
+                    <input class="form-control" asp-for="Photo" type="file" />
+                    <span asp-validation-for="Photo" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-outline-dark float-end">Guardar</button>
+                    <a asp-controller="Candidate" asp-action="Index" class="btn btn-outline-dark float-end me-2">Volver</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

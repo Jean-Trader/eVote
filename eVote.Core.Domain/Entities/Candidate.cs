@@ -7,7 +7,7 @@ namespace eVote.Core.Domain.Entities
     {
         public required string Photo { get; set; }
         public required bool Status { get; set; } = true;
-        public required int PartyId { get; set; }
+        public int? PartyId { get; set; }
         public Party? Party { get; set; }
     }
 }

@@ -31,10 +31,7 @@ namespace eVote.Controllers
             {
                 return RedirectToRoute(new { controller = "Login", action = "Index" });
             }
-            if (!_sessions.IsAdmin())
-            {
-                return RedirectToRoute(new { controller = "Login", action = "AccessDenegated" });
-            }
+
             var candidates = await _candidateService.GetAllAsync();
             var candidateViewModels = _mapper.Map<List<CandidateViewModel>>(candidates);
 
@@ -47,10 +44,7 @@ namespace eVote.Controllers
             {
                 return RedirectToRoute(new { controller = "Login", action = "Index" });
             }
-            if (!_sessions.IsAdmin())
-            {
-                return RedirectToRoute(new { controller = "Login", action = "AccessDenegated" });
-            }
+          
             return View("Save", new CreateCandidateViewModel { FirstName = "", LastName = "", PartyId = 0, Description = "", Status = true });
         }
 
@@ -61,10 +55,7 @@ namespace eVote.Controllers
             {
                 return RedirectToRoute(new { controller = "Login", action = "Index" });
             }
-            if (!_sessions.IsAdmin())
-            {
-                return RedirectToRoute(new { controller = "Login", action = "AccessDenegated" });
-            }
+          
             if (!ModelState.IsValid)
             {
                 ViewBag.ErrorMessage = "Error al agregar candidato. Por favor, verifique los datos ingresados.";
@@ -107,11 +98,7 @@ namespace eVote.Controllers
             {
                 return RedirectToRoute(new { controller = "Login", action = "Index" });
             }
-            if (!_sessions.IsAdmin())
-            {
-                return RedirectToRoute(new { controller = "Login", action = "AccessDenegated" });
-            }
-
+         
             var candidateDto = await _candidateService.GetByIdAsync(id);
             var vm = _mapper.Map<CandidateViewModel>(candidateDto);
             if (vm == null)
@@ -130,10 +117,7 @@ namespace eVote.Controllers
             {
                 return RedirectToRoute(new { controller = "Login", action = "Index" });
             }
-            if (!_sessions.IsAdmin())
-            {
-                return RedirectToRoute(new { controller = "Login", action = "AccessDenegated" });
-            }
+          
             if (!ModelState.IsValid)
             {
                 ViewBag.ErrorMessage = "Error al editar candidato. Por favor, verifique los datos ingresados.";
@@ -169,10 +153,7 @@ namespace eVote.Controllers
             {
                 return RedirectToRoute(new { controller = "Login", action = "Index" });
             }
-            if (!_sessions.IsAdmin())
-            {
-                return RedirectToRoute(new { controller = "Login", action = "AccessDenegated" });
-            }
+           
             var candidateDto = await _candidateService.GetByIdAsync(vm.Id);
             var candidate = _mapper.Map<CandidateViewModel>(candidateDto);
 
@@ -191,10 +172,7 @@ namespace eVote.Controllers
             {
                 return RedirectToRoute(new { controller = "Login", action = "Index" });
             }
-            if (!_sessions.IsAdmin())
-            {
-                return RedirectToRoute(new { controller = "Login", action = "AccessDenegated" });
-            }
+         
             var validate = _validateElection.ValidateExistActiveElection();
             if (validate)
             {

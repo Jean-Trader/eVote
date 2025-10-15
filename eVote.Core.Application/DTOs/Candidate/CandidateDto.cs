@@ -7,7 +7,7 @@ namespace eVote.Core.Application.DTOs.Candidate
     {
         public required string Photo { get; set; } = "Candidate.png";
         public required bool Status { get; set; } = true;
-        public required int PartyId { get; set; }
+        public int? PartyId { get; set; }
         public PartyDto? Party { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eVote.Infraestructure.Persistence.Context;
 
@@ -11,9 +12,11 @@ using eVote.Infraestructure.Persistence.Context;
 namespace eVote.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(eVoteDbContext))]
-    partial class eVoteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251015001627_MakePartyIdNullable")]
+    partial class MakePartyIdNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -8,11 +8,11 @@ namespace eVote.Core.Application.Services
     public class VoteService : GenericService<Vote, VoteDto> , IVoteServices
     {
         private readonly IVoteRepository _repository;
-        private readonly IMapper _mapper;
+  
         public VoteService(IGenericRepository<Vote> repository, IMapper mapper, IVoteRepository repo) : base(repository, mapper)
         {
             _repository = repo;
-            _mapper = mapper;
+ 
         }
 
         public List<VoteDto> GetAllWithDetails()

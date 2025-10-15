@@ -1,0 +1,54 @@
+﻿@using eVote.Core.Application.ViewModels.AllianceRequest
+@model AllianceRequestViewModel
+
+@{
+    ViewData["Title"] = "Nueva Solicitud de Alianza";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.ErrorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-12 col-md-6 col-lg-5">
+        <div class="card shadow-lg">
+            <div class="card-header bg-success text-white text-center">
+                <h4 class="mb-0">Nueva Solicitud de Alianza</h4>
+            </div>
+
+            <div class="card-body">
+                <form asp-controller="Alliance" asp-action="CreateRequest" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="RequestingPartyId" />
+                    <input type="hidden" asp-for="RequestDate" />
+                    <input type="hidden" asp-for="Status" />
+
+                    <div class="mb-3">
+                        <label asp-for="ReceivingPartyId" class="form-label">Partido destino:</label>
+                        <select class="form-select" asp-for="ReceivingPartyId">
+                            <option value="0">Seleccione un partido</option>
+                            @foreach (var party in ViewBag.AvailableParties)
+                            {
+                                <option value="@party.Id">@party.Name (@party.Acronym)</option>
+                            }
+                        </select>
+                        <span asp-validation-for="ReceivingPartyId" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <a asp-controller="Alliance" asp-action="Index" class="btn btn-outline-dark me-2">
+                            Volver
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            Enviar solicitud
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
